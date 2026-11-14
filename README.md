@@ -3,7 +3,21 @@
     -Create React App
     -Configured TailwindCSS
     -Header
+    -Routing
     -Login Form
+    -SignUp Form
+    -Form Validation
+    -useRef Hook
+    -Firebase setup
+    -Deploying app to production
+    -Signup user account
+    -Created Redux store for user
+    -Implemented signout
+    -Update Profile
+
+#NetflixGPT
+    -Search Bar
+    -Movie Suggestions
 
 #Features
     -Login/Signup
@@ -18,7 +32,4 @@
             -Movie Suggestions
                 -MovieLists * N
 
-#NetflixGPT
-    -Search Bar
-    -Movie Suggestions
    
