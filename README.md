@@ -14,6 +14,10 @@
     -Created Redux store for user
     -Implemented signout
     -Update Profile
+    -Fetch from TMDB api
+    -Bugfix user displayName and profile picture update.
+    -Bugfix ids user is not logged in redirect to browse page.
+    -Created constant file to keep const values
 
 #NetflixGPT
     -Search Bar

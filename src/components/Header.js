@@ -1,27 +1,44 @@
-import { signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router";
-import { useSelector } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+import { addUser, removeUser } from "../utils/userSlice";
+import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { useEffect } from "react";
+import { LOGO } from "../utils/constant"
 
 const Header = () => {
-  const user = useSelector(store => store.user)
+  const dispatch = useDispatch();
   const navigate = useNavigate()
+  const user = useSelector(store => store.user)
 
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {
-        navigate('/')
       })
       .catch((error) => {
-        // An error happened
-        console.error(error);
+        navigate("/error")
       });
   }
 
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const { uid, email, displayName, photoURL } = user;
+        dispatch(addUser({ uid, email, displayName, photoURL }));
+        navigate('/browse')
+      } else {
+        dispatch(removeUser());
+        navigate('/')
+      }
+    });
+
+    //Unsubscribe when component unmounts//
+    return () => unsubscribe();
+  }, []);
+
   return (
     <div className="absolute w-screen px-8 py-4 bg-gradient-to-b from-black flex justify-between">
-      <img className="w-24" src="https://occ.a.nflxso.net/dnmt/api/v6/iL4oJVDYZ8KLSrJ6eG2OwtghbfQ/AAAAAT4DsJqpLaLn4NdWj0hMqiS44NBBHsef6fJbMCXfInwFPyWRZWORRKIX6OoMypwFbV-skx1kkO0bw5qyPw4TGYECuHYwI_zw-n7CzjzEILCnaUNLQfmgkh-p1HzjExVEw9zDBrZd_di2.svg"
+      <img className="w-24" src={LOGO}
         alt="logo" />
       {user && <div className="flex p-2">
         <img alt="user-icon"
