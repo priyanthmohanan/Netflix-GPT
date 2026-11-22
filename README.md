@@ -25,7 +25,12 @@
     -update store movie data
     -Fetch data for trailer video
     -Update store with trailer video data
+    -Build movie card and movie list.
     -Embeded youtube video with autoplay and mute
+    -Added Img CDN url
+    -Custom hook for Now playing, Top rated, Popular, Upcoming movies
+    -GPT search page
+    -Added Mutli language feature
 
 #NetflixGPT
     -Search Bar

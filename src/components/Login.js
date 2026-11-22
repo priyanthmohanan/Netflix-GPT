@@ -5,7 +5,7 @@ import { addUser } from "../utils/userSlice"
 import { checkValidData } from "../utils/validate"
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../utils/firebase"
-import { DEFAULT_USER } from "../utils/constant"
+import { DEFAULT_USER, BG_URL } from "../utils/constant"
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -64,7 +64,7 @@ const Login = () => {
     <>
       <div className="absolute">
         <Header />
-        <img src="https://assets.nflxext.com/ffe/siteui/vlv3/12cedf4e-d9cf-4a31-b80f-7e6fbe4ef998/web/IN-en-20261109-TRIFECTA-perspective_12c44b81-de29-4047-ae67-40a52ffa45ba_large.jpg"
+        <img src={BG_URL}
           alt="background" />
       </div>
       <form onSubmit={(e) => { e.preventDefault() }} className="absolute p-12 bg-black bg-opacity-80 w-3/12 my-36 mx-auto left-0 right-0 text-white rounded-lg">
