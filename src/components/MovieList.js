@@ -1,35 +1,35 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import MovieCard from "./MovieCard";
 
 const MovieList = ({ title, movies }) => {
   const rowRef = useRef(null);
 
-  const scroll = (dir) =>
-    rowRef.current.scrollBy({ left: dir * 600, behavior: "smooth" });
+  useEffect(() => {
+    const el = rowRef.current;
+    if(!el) return;
+    const onWheel = (e) => {
+      const atStart = el.scrollLeft <= 0;
+      const atEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth - 1;
+
+      // at an edge and scrolling further that way -> let the page scroll
+      if ((e.deltaY < 0 && atStart) || (e.deltaY > 0 && atEnd)) return;
+
+      e.preventDefault();
+      el.scrollLeft += e.deltaY;
+    };
+    el.addEventListener("wheel", onWheel, { passive: false });
+    return () => el.removeEventListener("wheel", onWheel);
+  }, []);
+
+  if (!movies?.length) return null;
 
   return (
-    <div className="px-6">
-      <h1 className="text-3xl py-4 text-white">{title}</h1>
-      <div className="relative">
-        <button
-          onClick={() => scroll(-1)}
-          className="absolute left-0 top-0 h-full px-2 z-10 font-bold text-white text-4xl"
-        >
-          ‹
-        </button>
-
-        <div ref={rowRef} className="flex overflow-x-auto no-scrollbar">
-          {movies && movies.map((movie) => (
-            <MovieCard key={movie.id} posterPath={movie.poster_path} />
-          ))}
-        </div>
-
-        <button
-          onClick={() => scroll(1)}
-          className="absolute right-0 top-0 h-full px-2 z-10 font-bold text-white text-4xl"
-        >
-          ›
-        </button>
+    <div className="px-6 min-w-0 w-full">
+      <h1 className="text-lg md:text-3xl py-4 text-white">{title}</h1>
+      <div ref={rowRef} className="flex overflow-x-auto no-scrollbar">
+        {movies?.map((movie) => (
+          <MovieCard key={movie.id} posterPath={movie.poster_path} />
+        ))}
       </div>
     </div>
   );

@@ -46,16 +46,15 @@ const Header = () => {
   }
 
   const handleLanguageChange = (e) => {
-    console.log('Change Languague method', e)
     dispatch(changeLanguage(e.target.value))
   }
 
   return (
-    <div className="absolute w-screen px-8 py-4 bg-gradient-to-b from-black flex justify-between z-10">
-      <img className="w-24" src={LOGO}
+    <div className="absolute w-screen px-8 py-4 bg-gradient-to-b from-black flex flex-col md:flex-row justify-between z-10">
+      <img className="w-24 mx-auto md:mx-0" src={LOGO}
         alt="logo" />
       {user && (
-        <div className="flex p-2 justify-center items-center gap-2">
+        <div className="flex p-2 justify-between items-center gap-2">
           {showGptPage &&
             <select className="p-2 m-2 bg-gray-800 text-white rounded-lg"
               defaultValue={defaultLanguage}
@@ -70,7 +69,7 @@ const Header = () => {
             {!showGptPage ? 'GPTSearch' : 'Homepage'}
           </button>
           <img alt="user-icon"
-            className="w-8 h-8"
+            className="hidden md:inline-block w-8 h-8"
             src={user.photoURL} />
           <button onClick={handleSignOut} className="font-bold text-white">
             Sign out

@@ -7,7 +7,7 @@ export const API_OPTIONS = {
   headers: {
     accept: "application/json",
     Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkYjJmZGYzMTE5MWQ0Y2Q0NzE0ZGE2N2JiNzJiZGFmMiIsIm5iZiI6MTc5NDcyOTg5MS4zNTMsInN1YiI6IjZhZjk2N2EzODlhM2JlZGNjMDZjZTA2ZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.u1tNW9Ft87Xml2SzHJaYIx82unhCmdtzMkBj5cyRiMY"
+      "Bearer " + process.env.REACT_APP_TMDB_KEY
   },
 }
 
@@ -24,3 +24,6 @@ export const LANGUAGE = [
   { identifier: "ar", name: "Arabic" },
   { identifier: "fr", name: "French" },
 ];
+
+
+export const GROQ_KEY = process.env.REACT_APP_GROQ_KEY

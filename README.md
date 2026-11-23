@@ -31,6 +31,10 @@
     -Custom hook for Now playing, Top rated, Popular, Upcoming movies
     -GPT search page
     -Added Mutli language feature
+    -Added Grop api
+    -Memoization
+    -Resued movie list component
+    -Added .env files
 
 #NetflixGPT
     -Search Bar
